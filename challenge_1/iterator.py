@@ -16,14 +16,23 @@
 #Qual inteiro positivo abaixo de 1 milhão, produz a sequencia com mais items?
 
 class GlobalIterator(object):
-    def __init__(self):
-        self.my_list = [1,2,4,8,16,5,10,20,40,13]
+    def __init__(self, n):
+        self.n = n
+        self.first = True
 
     def __iter__(self):
         return self
 
     def next(self):
-        if not self.my_list:
-            raise StopIteration
+        if self.first:
+            self.first = not self.first
+            return self.n
 
-        return self.my_list.pop()
+        if self.n == 1:
+            raise StopIteration
+        elif self.n % 2 == 0:
+            self.n = self.n/2
+        else:
+            self.n = (3*self.n) + 1
+
+        return self.n
