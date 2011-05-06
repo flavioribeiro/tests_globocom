@@ -30,9 +30,7 @@ class GlobalIterator(object):
 
         if self.n == 1:
             raise StopIteration
-        elif self.n % 2 == 0:
-            self.n = self.n/2
-        else:
-            self.n = (3*self.n) + 1
+
+        self.n = self.n/2 if self.n % 2 == 0 else 3*self.n+1
 
         return self.n
