@@ -5,13 +5,10 @@
 
 from iterator import GlobalIterator
 
-MAX_NUMBER = 999999
-
-def find_the_largest_sequence():
-    global MAX_NUMBER
+def find_the_largest_sequence(max_number):
     largest_seq_size, number = 0, 0
 
-    for x in xrange(1,MAX_NUMBER):
+    for x in xrange(1,max_number):
         seq = [n for n in GlobalIterator(x)]
         seq_size = len(seq)
         if seq_size > largest_seq_size:
@@ -20,5 +17,5 @@ def find_the_largest_sequence():
     print number
 
 if __name__ == "__main__":
-    find_the_largest_sequence()
+    find_the_largest_sequence(999999)
 
