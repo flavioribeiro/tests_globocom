@@ -1,0 +1,2 @@
+* to run the tests: $ py.test -v test_iterator.py
+* to know the  number that produces the largest sequence: $ python largest_sequence.py
