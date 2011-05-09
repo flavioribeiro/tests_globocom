@@ -1,0 +1,1 @@
+ffmpeg -i l-pa2-sample.avi -y -b 800 -r 25 -f flv -vcodec flv -ab 128 -ar 44100 out.flv
