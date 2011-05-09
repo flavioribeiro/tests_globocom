@@ -21,7 +21,7 @@ class WalkerRobot(object):
     def turn(self, command):
         if command == 'L':
             if self.curr_direction == "E": self.curr_direction = "N"
-            elif self.curr_direction == "B": self.curr_direction = "W"
+            elif self.curr_direction == "N": self.curr_direction = "W"
             elif self.curr_direction == "W": self.curr_direction = "S"
             elif self.curr_direction == "S": self.curr_direction = "E"
         elif command == 'R':
@@ -47,6 +47,8 @@ class WalkerRobot(object):
         if self.can_move(x=to_x, y=to_y):
             self.x = to_x
             self.y = to_y
+        else:
+            raise Exception("Could not teleport to that position")
 
     def can_move(self, x=None, y=None):
         if x and x <= self.ground.max_x or y and y <= self.ground.max_y:
