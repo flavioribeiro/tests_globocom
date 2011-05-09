@@ -24,9 +24,8 @@ def main():
                     robot.turn(command)
                 elif command == "M":
                     robot.move()
-                else:
-                    raise Exception("Deu águia")
-    print 'Posicao final:', robot.x, robot.y, robot.curr_direction
+
+    print 'final pos:', robot.x, robot.y, robot.curr_direction
 
 if __name__ == "__main__":
     main()

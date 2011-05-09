@@ -9,7 +9,6 @@
 #Considerações:
 #east ou west -> move no eixo x
 #north ou south -> move no eixo y
-# 
 
 class WalkerRobot(object):
     '''
@@ -36,20 +35,26 @@ class WalkerRobot(object):
         if self.curr_direction == 'E' or self.curr_direction == 'W':
             if self.can_move((self.x+1, self.y)):
                 self.x+=1
+            else:
+                raise Exception("Could not move to that position")
 
         elif self.curr_direction == 'N' or self.curr_direction == 'S':
             if self.can_move((self.x, self.y+1)):
                 self.y+=1
+            else:
+                raise Exception("Could not move to that position")
 
     def teleport(self, position):
         self.x = int(position[0])
         self.y = int(position[1])
 
     def can_move(self, position):
-        if position[0] < self.ground.max_x and position[1] < self.ground.max_y:
+        if position[0] <= self.ground.max_x and position[1] <= self.ground.max_y:
             return True
         return False
 
 class Ground(object):
     def __init__(self, infos):
-        self.max_x, self.max_y = infos
+        max_x, max_y = infos
+        self.max_x = int(max_x)
+        self.max_y = int(max_y)
