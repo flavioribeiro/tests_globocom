@@ -14,9 +14,8 @@ class WalkerRobot(object):
     '''
     WalkerRobot can teleport and move on a cartesian plane.
     '''
-    def __init__(self, infos, ground):
-        self.x, self.y, self.curr_direction = infos
-        self.x, self.y = int(self.x), int(self.y)
+    def __init__(self, direction, x, y, ground):
+        self.curr_direction, self.x, self.y  = direction, x, y
         self.ground = ground
 
     def turn(self, command):
@@ -33,28 +32,28 @@ class WalkerRobot(object):
 
     def move(self):
         if self.curr_direction == 'E' or self.curr_direction == 'W':
-            if self.can_move((self.x+1, self.y)):
+            if self.can_move(x=self.x+1):
                 self.x+=1
             else:
                 raise Exception("Could not move to that position")
 
         elif self.curr_direction == 'N' or self.curr_direction == 'S':
-            if self.can_move((self.x, self.y+1)):
+            if self.can_move(y=self.y+1):
                 self.y+=1
             else:
                 raise Exception("Could not move to that position")
 
-    def teleport(self, position):
-        self.x = int(position[0])
-        self.y = int(position[1])
+    def teleport(self, to_x, to_y):
+        if self.can_move(x=to_x, y=to_y):
+            self.x = to_x
+            self.y = to_y
 
-    def can_move(self, position):
-        if position[0] <= self.ground.max_x and position[1] <= self.ground.max_y:
+    def can_move(self, x=None, y=None):
+        if x and x <= self.ground.max_x or y and y <= self.ground.max_y:
             return True
         return False
 
 class Ground(object):
-    def __init__(self, infos):
-        max_x, max_y = infos
-        self.max_x = int(max_x)
-        self.max_y = int(max_y)
+    def __init__(self, x, y):
+        self.max_x = x
+        self.max_y = y
