@@ -8,7 +8,7 @@ class Video(models.Model):
     owner = models.ForeignKey(User, verbose_name="Proprietário")
     description = models.TextField(u"Descrição", blank=True)
     screenshot = models.FileField(upload_to="videos/screenshots/")
-    video_path = models.CharField(max_length=200)
+    video_path = models.CharField(max_length=400, blank=True)
 
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now_add=True)

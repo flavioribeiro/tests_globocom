@@ -13,26 +13,30 @@ class VideoEngine(object):
         self.extension = self.video_path[self.video_path.rindex("."):]
         self.pure_name =  self.video_path[self.video_path.rindex("/"):self.video_path.rindex(".")]       
         self.new_video_path = VIDEOS_PATH + self.pure_name + ".mp4"
+        print '*** criou video engine', self.pure_name, self.new_video_path, self.extension
 
     def get_screenshot(self):
+        print '*** pegando o screenshot'
         screenshot = tempfile.NamedTemporaryFile()
         filename = screenshot.name + ".png"
         screenshot.close()
 	command = "ffmpeg -i %s -an -ss 00:00:03 -an -r 1 -vframes 1 -s 290x168 %s" % (self.video_path, filename)
         p = Popen(command.split(), stdout=PIPE, stdin=PIPE, stderr=STDOUT)
         p.communicate()
-        print filename
+        screenshot = open(filename)
+        return screenshot
 
     def get_encoded_video_path(self, rotate=False):
         if rotate:
             self._rotate_video()
-
+        print '*** gerando o mp4'
         command = "ffmpeg -i %s -acodec copy -vcodec copy %s" % (self.video_path, self.new_video_path)
         p = Popen(command.split(), stdout=PIPE, stdin=PIPE, stderr=STDOUT)
         p.communicate()
-        print self.new_video_path
+        return self.new_video_path
 
     def _rotate_video(self):
+        print '*** rotacionando o video'
         command = "mencoder %s -vf rotate=1 -oac copy -ovc lavc  -o %s" % (self.video_path, "/tmp/" + self.pure_name + "-rotated" + self.extension)
         p = Popen(command.split(), stdout=PIPE, stdin=PIPE, stderr=STDOUT)
         p.communicate()
