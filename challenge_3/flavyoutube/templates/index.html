@@ -37,6 +37,7 @@
 			<tr>
 			<td align=center width=295 valign=top>
 			{% for video in videos %}
+			<a href="watch/?id={{ video.id }}">
 			<table border=0>
 				<tr><td align=center bgcolor=#F0F0F0><font color=black size=3><b>{{ video.name }}</b></font></td></tr>
 				<tr><td align=center><img src="/media/{{ video.screenshot }}"></td></tr>
@@ -44,12 +45,35 @@
 				
 				<tr><td align=right><font color=darkgrey size=2>enviado por <a href="#">{{ video.owner }}</a> em {{ video.created_on }}</td></tr>		
 			</table>
+			</a>
 			{% endfor %}
 
 			</td>
 			<td align=center width=295 valign=top>
+			{% for video in videos %}
+			<a href="watch/?id={{ video.id }}">
+			<table border=0>
+				<tr><td align=center bgcolor=#F0F0F0><font color=black size=3><b>{{ video.name }}</b></font></td></tr>
+				<tr><td align=center><img src="/media/{{ video.screenshot }}"></td></tr>
+				<tr><td align=center><font color=grey size=2>{{ video.description }}</font></td></tr>
+				
+				<tr><td align=right><font color=darkgrey size=2>enviado por <a href="#">{{ video.owner }}</a> em {{ video.created_on }}</td></tr>		
+			</table>
+			</a>
+			{% endfor %}
 			</td>
 			<td align=center width=295 valign=top>
+			{% for video in videos %}
+			<a href="watch/?id={{ video.id }}">
+			<table border=0>
+				<tr><td align=center bgcolor=#F0F0F0><font color=black size=3><b>{{ video.name }}</b></font></td></tr>
+				<tr><td align=center><img src="/media/{{ video.screenshot }}"></td></tr>
+				<tr><td align=center><font color=grey size=2>{{ video.description }}</font></td></tr>
+				
+				<tr><td align=right><font color=darkgrey size=2>enviado por <a href="#">{{ video.owner }}</a> em {{ video.created_on }}</td></tr>		
+			</table>
+			</a>
+			{% endfor %}
 			</td>
 			</tr>
 		</table>
