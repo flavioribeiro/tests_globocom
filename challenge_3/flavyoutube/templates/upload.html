@@ -28,17 +28,34 @@
 	</div>
 
 	<div id="videoslist" align=center>
+		<table border=0 bgcolor=#808080 width=900>
+			<tr><td align=center><font face="Arial" size=3 color=white ><b>UPLOAD</b></font></td></tr>
+		</table>
+<br>
 
-	<form method="POST">
-	  Título do Vídeo: <input type="text" name="user" size="16" /><br/>
-	  Descrição: <textarea cols="50" rows="4" name="comment"></textarea><br>
-	Vídeo (*.avi ou *.mpeg): <input type="file" name="datafile" size="40"><br>
-	<input type="checkbox" name="vehicle" value="Bike" />Rotacionar vídeo<br />
+</form>
+
+	<form method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	<table border=0>
+	<tr><td>Título do Vídeo:</td><td>{{ form.name }}</td></tr>
+	<tr><td>Descrição:</td><td>{{ form.description }}</td></tr>
+	<tr><td>Vídeo (*.avi ou *.mpeg):</td><td>{{ form.video }}</td></tr>
+	<tr><td><td>{{ form.rotate }} Rotacionar vídeo</td></tr>
+	</table>
+
 	  <div align="center">
 		<br>
-	    <p><input type="submit" value="Login" /></p>
+	    <p><input type="submit" value="Enviar" /></p>
 	  </div>
 	</form>
+	{% if upload_success%}
+		<br>
+		<img src="/media/images/success.png">&nbsp;Vídeo enviado com sucesso. Aguarde o processamento do mesmo para que esteja disponível.
+	{% else %}{% if upload_fail %}
+		<br>
+		<img src="/media/images/fail.png">&nbsp;Falha no envio/processamento do vídeo. Tente novamente.
+	{% endif %}	{% endif %}
 
 	</div>
 </body>

@@ -6,6 +6,13 @@ from django.template import RequestContext
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django import forms
+
+class UploadMovieForm(forms.Form):
+    name = forms.CharField(max_length=100, label="Nome")
+    description = forms.CharField(label="Descrição", widget=forms.Textarea)
+    video = forms.FileField()
+    rotate = forms.BooleanField(label="Rotacionar Video", required=False)
 
 def log_me_in(request, *args):
     if request.method == "GET":
@@ -35,7 +42,25 @@ def watch(request, *args):
 
 @login_required
 def upload(request, *args):
-    return render_to_response("upload.html")
+    if request.method == 'GET':
+        form = UploadMovieForm()
+        return render_to_response("upload.html", {'logged' : True, 'username': request.user, 'form': form}, context_instance=RequestContext(request))
+
+    elif request.method == 'POST':
+        form = UploadMovieForm(request.POST, request.FILES)
+        if form.is_valid():
+            if handle_video_upload(request.FILES['video']):
+                return render_to_response("upload.html", {'logged' : True, 'upload_success':True, 
+                        'username': request.user, 'form': form}, context_instance=RequestContext(request))
+        
+        return render_to_response("upload.html", {'logged' : True, 'upload_fail':True, 
+                'username': request.user, 'form': form}, context_instance=RequestContext(request))
+                
+
+def handle_video_upload(movie):
+    for chunk in movie.chunks():
+        print 'ok'
+    return True
 
 def subscribe(request, *args):
     if request.method == "GET":
