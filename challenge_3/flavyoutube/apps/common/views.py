@@ -65,7 +65,8 @@ def upload(request, *args):
                 
 
 def handle_video_upload(movie, data=False, user=None):
-    if not movie.name.endswith(".avi") or movie.name.endswith(".mpeg"):
+    extensions = [".mpeg",".mpg",".avi"]
+    if movie.name[movie.name.rindex("."):] not in extensions:
         return False
 
     extension = movie.name[movie.name.rindex("."):]
@@ -75,7 +76,6 @@ def handle_video_upload(movie, data=False, user=None):
     for chunk in movie.chunks():
         movie_file.write(chunk)
     movie_file.close()
-    print 'video guardado em', movie_file.name
     
     video_engine = VideoEngine(movie_file.name)
 
@@ -84,6 +84,8 @@ def handle_video_upload(movie, data=False, user=None):
     new_video.description = data['description']
     new_video.owner = User.objects.get(username=user.username)
     new_video.screenshot = File( video_engine.get_screenshot() ) 
+    new_video.video_path = video_engine.get_encoded_video_path()
+
     new_video.save()
 
     return True
