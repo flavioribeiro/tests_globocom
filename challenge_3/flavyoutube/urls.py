@@ -9,11 +9,12 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
-    (r'slogin/?$', 'common.views.login'),
-    (r'slogout/?$', 'common.views.logout'),
+    (r'login/?$', 'common.views.log_me_in'),
+    (r'logout/?$', 'common.views.log_me_out'),
     (r'^$', 'common.views.index'),
     (r'watch/*', 'common.views.watch'),
     (r'upload/*', 'common.views.upload'),
+    (r'subscribe/', 'common.views.subscribe'),
     
 )
 

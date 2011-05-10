@@ -14,8 +14,14 @@
 			</h1>
 			<nav>
 				<ul id="nav">
-					<li class="list"><a class="link" href="#"><img src="/media/images/key.png">&nbsp;Login</a></li>
-					<li class="list"><a class="link" href="#"><img src="/media/images/add.png">&nbsp;Cadastro</a></li>
+				{% if logged %}
+					<li class="list"><a class="link" href="#">Olá {{ username }}</a></li>
+					<li class="list"><a class="link" href="/upload/"><img src="/media/images/video.png">&nbsp;Adicionar Vídeo</a></li>
+					<li class="list"><a class="link" href="/logout/"><img src="/media/images/logout.png">&nbsp;Logout</a></li>
+				{% else %}
+					<li class="list"><a class="link" href="/login/"><img src="/media/images/key.png">&nbsp;Login</a></li>
+					<li class="list"><a class="link" href="/subscribe/"><img src="/media/images/add.png">&nbsp;Cadastro</a></li>
+				{% endif %}
 				</ul>
 			</nav>
 		</header>

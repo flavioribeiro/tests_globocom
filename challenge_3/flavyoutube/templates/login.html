@@ -17,8 +17,9 @@
 	<tr>
 	<td>
 	<form method="POST">
-	  LOGIN: <input type="text" name="user" size="16" /><br/>
-	  SENHA: <input type="password" name="pass" size="15" /><br />
+	{% csrf_token %}
+	  LOGIN: <input type="text" name="username" size="16" /><br/>
+	  SENHA: <input type="password" name="password" size="15" /><br />
 	  <div align="center">
 		<br>
 	    <p><input type="submit" value="Login" /></p>
