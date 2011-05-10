@@ -54,11 +54,8 @@ def subscribe(request, *args):
             user.first_name = _name
             user.save()
             auth = authenticate(username=_username, password=_password)
-            if auth is not None:
-                login(request, auth)
-                return HttpResponseRedirect("/")
-            else:
-                return HttpResponse("Deu águia")
+            login(request, auth)
+            return HttpResponseRedirect("/")
 
 
 
