@@ -5,12 +5,12 @@ from django.contrib import admin
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
-# admin.autodiscover()
+admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
-    (r'login/?$', 'common.views.login'),
-    (r'logout/?$', 'common.views.logout'),
+    (r'slogin/?$', 'common.views.login'),
+    (r'slogout/?$', 'common.views.logout'),
     (r'^$', 'common.views.index'),
     (r'watch/*', 'common.views.watch'),
     (r'upload/*', 'common.views.upload'),
