@@ -49,7 +49,7 @@ def upload(request, *args):
     elif request.method == 'POST':
         form = UploadMovieForm(request.POST, request.FILES)
         if form.is_valid():
-            if handle_video_upload(request.FILES['video']):
+            if handle_video_upload(request.FILES['video'], request.user):
                 return render_to_response("upload.html", {'logged' : True, 'upload_success':True, 
                         'username': request.user, 'form': form}, context_instance=RequestContext(request))
         
@@ -57,7 +57,10 @@ def upload(request, *args):
                 'username': request.user, 'form': form}, context_instance=RequestContext(request))
                 
 
-def handle_video_upload(movie):
+def handle_video_upload(movie, user):
+    if not movie.name.endswith(".avi") or movie.name.endswith(".mpeg"):
+        return False
+
     for chunk in movie.chunks():
         print 'ok'
     return True
