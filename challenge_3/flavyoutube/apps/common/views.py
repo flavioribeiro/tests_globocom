@@ -35,7 +35,7 @@ def log_me_in(request, *args):
  
 def log_me_out(request, *args):
     logout(request)
-    return render_to_response("index.html")
+    return HttpResponseRedirect("/")
 
 def index(request, *args):
     videos = Video.objects.all()
