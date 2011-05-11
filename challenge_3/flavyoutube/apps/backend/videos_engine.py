@@ -12,7 +12,7 @@ class VideoEngine(object):
         self.video_path = video_path
         self.extension = self.video_path[self.video_path.rindex("."):]
         self.pure_name =  self.video_path[self.video_path.rindex("/"):self.video_path.rindex(".")]       
-        self.new_video_path = VIDEOS_PATH + self.pure_name + ".mp4"
+        self.new_video_path = VIDEOS_PATH + self.pure_name + ".ogv"
         print '*** criou video engine', self.pure_name, self.new_video_path, self.extension
 
     def get_screenshot(self):
@@ -29,8 +29,11 @@ class VideoEngine(object):
     def get_encoded_video_path(self, rotate=False):
         if rotate:
             self._rotate_video()
-        print '*** gerando o mp4'
-        command = "ffmpeg -i %s -acodec copy -vcodec copy %s" % (self.video_path, self.new_video_path)
+        print '*** gerando o ogg'
+        command = "ffmpeg2theora %s -o %s" % (self.video_path, self.new_video_path)
+#        command = "ffmpeg -i %s -acodec copy -vcodec copy %s" % (self.video_path, self.new_video_path)
+#        command = "HandBrakeCLI -Z Universal -i %s -o %s --rate 29.97" % (self.video_path, self.new_video_path)
+        print command
         p = Popen(command.split(), stdout=PIPE, stdin=PIPE, stderr=STDOUT)
         p.communicate()
         return self.new_video_path

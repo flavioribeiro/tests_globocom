@@ -30,17 +30,17 @@
 	<div id="videoslist" align=center>
 
 		<table border=0 bgcolor=#808080 width=900>
-			<tr><td align=center><font face="Arial" size=3 color=white ><b>MENINO LEVANDO TIRO.PNG</b></font></td></tr>
+			<tr><td align=center><font face="Arial" size=3 color=white ><b>{{ video.name }}</b></font></td></tr>
 		</table>
 		<br>
 		<video width="640" height="390" controls="controls">
-		  <source src="/media/videos/myoutputfie2.mp4" />
+		  <source src="{{ video.link }}" />
 		Your browser does not support the video tag.
 		</video>
 
 		<table border=0 width=900>
-			<tr><td align=center><font face="Arial" size=2><b>descrição do video por aqui</b></font></td></tr>
-			<tr><td align=center><font face="Arial" size=2><b>enviado por flaviornb as 12/12/1298</b></font></td></tr>
+			<tr><td align=center><font face="Arial" size=2><b>{{ video.description }}</b></font></td></tr>
+			<tr><td align=center><font face="Arial" size=2>enviado por <a href="#">{{ video.owner }}</a> em {{ video.created_on }}</font></td></tr>
 		</table>
 		
 	</div>

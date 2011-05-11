@@ -33,50 +33,31 @@
 			<tr><td align=center><font face="Arial" size=3 color=white ><b>LISTA DE VÍDEOS</b></font></td></tr>
 		</table>
 
-		<table border=0>
-			<tr>
-			<td align=center width=295 valign=top>
+		<table border=0 width=900>
+		<tr><td>
+		<ul style="float:center;">
+
 			{% for video in videos %}
-			<a href="watch/?id={{ video.id }}">
-			<table border=0>
-				<tr><td align=center bgcolor=#F0F0F0><font color=black size=3><b>{{ video.name }}</b></font></td></tr>
-				<tr><td align=center><img src="/media/{{ video.screenshot }}"></td></tr>
-				<tr><td align=center><font color=grey size=2>{{ video.description }}</font></td></tr>
+			<li style="float:left; width:33%">
+
+				<table border=0>
+
+					<tr><td align=center bgcolor=#F0F0F0><font color=black size=3><b>{{ video.name }}</b></font></td></tr>
+					<tr><td align=center><a href="watch/?id={{ video.id }}"><img src="/media/{{ video.screenshot }}"></a></td></tr>
+					<tr><td align=center><font color=grey size=2>{{ video.description }}</font></td></tr>
 				
-				<tr><td align=right><font color=darkgrey size=2>enviado por <a href="#">{{ video.owner }}</a> em {{ video.created_on }}</td></tr>		
-			</table>
-			</a>
+					<tr><td align=right><font color=darkgrey size=2>enviado por <a href="#">{{ video.owner }}</a> em {{ video.created_on }}</td></tr>		
+
+				</table>
+
+			</li>
 			{% endfor %}
 
-			</td>
-			<td align=center width=295 valign=top>
-			{% for video in videos %}
-			<a href="watch/?id={{ video.id }}">
-			<table border=0>
-				<tr><td align=center bgcolor=#F0F0F0><font color=black size=3><b>{{ video.name }}</b></font></td></tr>
-				<tr><td align=center><img src="/media/{{ video.screenshot }}"></td></tr>
-				<tr><td align=center><font color=grey size=2>{{ video.description }}</font></td></tr>
-				
-				<tr><td align=right><font color=darkgrey size=2>enviado por <a href="#">{{ video.owner }}</a> em {{ video.created_on }}</td></tr>		
-			</table>
-			</a>
-			{% endfor %}
-			</td>
-			<td align=center width=295 valign=top>
-			{% for video in videos %}
-			<a href="watch/?id={{ video.id }}">
-			<table border=0>
-				<tr><td align=center bgcolor=#F0F0F0><font color=black size=3><b>{{ video.name }}</b></font></td></tr>
-				<tr><td align=center><img src="/media/{{ video.screenshot }}"></td></tr>
-				<tr><td align=center><font color=grey size=2>{{ video.description }}</font></td></tr>
-				
-				<tr><td align=right><font color=darkgrey size=2>enviado por <a href="#">{{ video.owner }}</a> em {{ video.created_on }}</td></tr>		
-			</table>
-			</a>
-			{% endfor %}
-			</td>
-			</tr>
+		</ul>
+		</td></tr>
 		</table>
+
+
 
 	</div>
 </body>

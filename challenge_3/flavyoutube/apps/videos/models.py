@@ -13,5 +13,7 @@ class Video(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now_add=True)
 
+    def link(self):
+        return "/media/videos" + self.video_path[self.video_path.rindex("/"):]
     def __unicode__(self):
         return "Video: %s" % (self.name)

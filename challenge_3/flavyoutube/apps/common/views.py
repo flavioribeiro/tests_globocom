@@ -45,7 +45,8 @@ def index(request, *args):
         return render_to_response("index.html", {'logged' : False, 'videos': videos})
 
 def watch(request, *args):
-    return render_to_response("watch.html")
+    video = Video.objects.get(id=request.GET['id'])
+    return render_to_response("watch.html", {'video': video})
 
 @login_required
 def upload(request, *args):
