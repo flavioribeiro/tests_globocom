@@ -47,24 +47,21 @@ class VideoEngine(object):
         self.video_path = "/tmp/" + self.pure_name + "-rotated" + self.extension
        
 if __name__ == "__main__":
-    a = VideoEngine("/home/flavio/devel/globaltests/challenge_3/flavyoutube/apps/backend/sample1.avi")
+    a = VideoEngine("/home/flavio/samples/sample1.avi", rotate=True)
     a.get_screenshot()
     a.get_encoded_video_path()
-    a = VideoEngine("/home/flavio/devel/globaltests/challenge_3/flavyoutube/apps/backend/sample2.mpeg")
+    a = VideoEngine("/home/flavio/samples/sample2.mpeg", rotate=True)
     a.get_screenshot()
     a.get_encoded_video_path()
-    a = VideoEngine("/home/flavio/devel/globaltests/challenge_3/flavyoutube/apps/backend/sample3.mpg")
+    a = VideoEngine("/home/flavio/samples/sample3.mpg", rotate=True)
     a.get_screenshot()
     a.get_encoded_video_path()
-    a = VideoEngine("/home/flavio/devel/globaltests/challenge_3/flavyoutube/apps/backend/sample4.avi")
+    a = VideoEngine("/home/flavio/samples/sample4.avi", rotate=True)
     a.get_screenshot()
     a.get_encoded_video_path()
-    a = VideoEngine("/home/flavio/devel/globaltests/challenge_3/flavyoutube/apps/backend/sample5.avi")
-    a.get_screenshot()
-    a.get_encoded_video_path(rotate=True)
-    a = VideoEngine("/home/flavio/devel/globaltests/challenge_3/flavyoutube/apps/backend/sample6.mpeg")
-    a.get_screenshot()
-    a.get_encoded_video_path(rotate=True)
+
+
+
 
 
 
