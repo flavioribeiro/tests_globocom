@@ -23,10 +23,17 @@ class VideoEngine(object):
         screenshot = tempfile.NamedTemporaryFile()
         filename = screenshot.name + ".png"
         screenshot.close()
-	command = "ffmpeg -i %s -an -ss 00:00:03 -an -r 1 -vframes 1 -s 290x168 %s" % (self.video_path, filename)
-        p = Popen(command.split(), stdout=PIPE, stdin=PIPE, stderr=STDOUT)
-        p.communicate()
-        screenshot = open(filename)
+        try:
+            command = "ffmpeg -i %s -an -ss 00:00:03 -an -r 1 -vframes 1 -s 290x168 %s" % (self.video_path, filename)
+            p = Popen(command.split(), stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+            p.communicate()
+            screenshot = open(filename)
+        except:
+            command = "ffmpeg -i %s -an -ss 00:00:01 -an -r 1 -vframes 1 -s 290x168 %s" % (self.video_path, filename)
+            p = Popen(command.split(), stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+            p.communicate()
+            screenshot = open(filename)
+
         return screenshot
 
     def get_encoded_video_path(self):
