@@ -46,6 +46,8 @@ def index(request, *args):
 
 def watch(request, *args):
     video = Video.objects.get(id=request.GET['id'])
+    if request.user.is_authenticated():
+        return render_to_response("watch.html", {'video': video, 'logged': True, 'username': request.user})
     return render_to_response("watch.html", {'video': video})
 
 @login_required
