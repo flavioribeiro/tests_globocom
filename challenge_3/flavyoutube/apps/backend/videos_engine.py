@@ -8,12 +8,15 @@ import os
 VIDEOS_PATH = "/home/flavio/devel/globaltests/challenge_3/flavyoutube/media/videos/"
 
 class VideoEngine(object):
-    def __init__(self, video_path):
+    def __init__(self, video_path, rotate=False):
         self.video_path = video_path
         self.extension = self.video_path[self.video_path.rindex("."):]
         self.pure_name =  self.video_path[self.video_path.rindex("/"):self.video_path.rindex(".")]       
         self.new_video_path = VIDEOS_PATH + self.pure_name + ".ogv"
         print '*** criou video engine', self.pure_name, self.new_video_path, self.extension
+
+        if rotate==True:
+            self._rotate_video()
 
     def get_screenshot(self):
         print '*** pegando o screenshot'
@@ -26,9 +29,7 @@ class VideoEngine(object):
         screenshot = open(filename)
         return screenshot
 
-    def get_encoded_video_path(self, rotate=False):
-        if rotate:
-            self._rotate_video()
+    def get_encoded_video_path(self):
         print '*** gerando o ogg'
         command = "ffmpeg2theora %s -o %s" % (self.video_path, self.new_video_path)
 #        command = "ffmpeg -i %s -acodec copy -vcodec copy %s" % (self.video_path, self.new_video_path)
@@ -48,16 +49,16 @@ class VideoEngine(object):
 if __name__ == "__main__":
     a = VideoEngine("/home/flavio/devel/globaltests/challenge_3/flavyoutube/apps/backend/sample1.avi")
     a.get_screenshot()
-    a.get_encoded_video_path(rotate=True)
+    a.get_encoded_video_path()
     a = VideoEngine("/home/flavio/devel/globaltests/challenge_3/flavyoutube/apps/backend/sample2.mpeg")
     a.get_screenshot()
-    a.get_encoded_video_path(rotate=True)
+    a.get_encoded_video_path()
     a = VideoEngine("/home/flavio/devel/globaltests/challenge_3/flavyoutube/apps/backend/sample3.mpg")
     a.get_screenshot()
-    a.get_encoded_video_path(rotate=True)
+    a.get_encoded_video_path()
     a = VideoEngine("/home/flavio/devel/globaltests/challenge_3/flavyoutube/apps/backend/sample4.avi")
     a.get_screenshot()
-    a.get_encoded_video_path(rotate=True)
+    a.get_encoded_video_path()
     a = VideoEngine("/home/flavio/devel/globaltests/challenge_3/flavyoutube/apps/backend/sample5.avi")
     a.get_screenshot()
     a.get_encoded_video_path(rotate=True)

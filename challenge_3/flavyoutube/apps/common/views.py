@@ -79,8 +79,11 @@ def handle_video_upload(movie, data=False, user=None):
     for chunk in movie.chunks():
         movie_file.write(chunk)
     movie_file.close()
-    
-    video_engine = VideoEngine(movie_file.name)
+   
+    if data.has_key('rotate'):
+        video_engine = VideoEngine(movie_file.name, rotate=True)
+    else:
+        video_engine = VideoEngine(movie_file.name)
 
     new_video = Video()
     new_video.name = data['name']
